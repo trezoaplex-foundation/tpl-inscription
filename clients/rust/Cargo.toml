@@ -6,7 +6,7 @@ readme = "README.md"
 license-file = "../../LICENSE"
 homepage = "https://www.metaplex.com"
 description = "Program to inscribe binary data to a Trezoa account."
-repository = "https://github.com/metaplex-foundation/tpl-engraver"
+repository = "https://github.com/trezoaplex-foundation/tpl-engraver"
 
 [lib]
 crate-type = ["cdylib", "lib"]
