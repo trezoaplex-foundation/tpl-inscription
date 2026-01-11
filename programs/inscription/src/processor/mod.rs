@@ -1,6 +1,6 @@
 use crate::instruction::MplInscriptionInstruction;
 use borsh::BorshDeserialize;
-use solana_program::{account_info::AccountInfo, entrypoint::ProgramResult, msg, pubkey::Pubkey};
+use trezoa_program::{account_info::AccountInfo, entrypoint::ProgramResult, msg, pubkey::Pubkey};
 
 mod add_authority;
 mod allocate;
@@ -27,7 +27,7 @@ use set_mint::*;
 use write_data::*;
 
 pub struct Processor;
-impl Processor {
+itpl Processor {
     pub fn process_instruction<'a>(
         _program_id: &Pubkey,
         accounts: &'a [AccountInfo<'a>],

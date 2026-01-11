@@ -1,7 +1,7 @@
 {
-  "name": "@metaplex-foundation/mpl-inscription",
+  "name": "@trezoaplex-foundation/tpl-inscription",
   "version": "0.8.1",
-  "description": "A simple program for inscribing bytes on chain.",
+  "description": "A sitple program for inscribing bytes on chain.",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
@@ -20,22 +20,22 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "homepage": "https://metaplex.com",
-  "repository": "https://github.com/metaplex-foundation/mpl-candy-guard.git",
-  "author": "Metaplex Maintainers <contact@metaplex.com>",
+  "homepage": "https://trezoaplex.com",
+  "repository": "https://github.com/metaplex-foundation/tpl-candy-guard.git",
+  "author": "Trezoaplex Maintainers <contact@trezoaplex.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@metaplex-foundation/mpl-toolbox": "^0.8.0",
-    "@metaplex-foundation/mpl-token-metadata": "^3.1.2"
+    "@trezoaplex-foundation/tpl-toolbox": "^0.8.0",
+    "@trezoaplex-foundation/tpl-token-metadata": "^3.1.2"
   },
   "peerDependencies": {
-    "@metaplex-foundation/umi": ">= 0.8.2 < 1"
+    "@trezoaplex-foundation/umi": ">= 0.8.2 < 1"
   },
   "devDependencies": {
     "@ava/typescript": "^3.0.1",
-    "@metaplex-foundation/umi": "^0.8.2",
-    "@metaplex-foundation/umi-bundle-tests": "^0.8.2",
-    "@solana/web3.js": "^1.73.0",
+    "@trezoaplex-foundation/umi": "^0.8.2",
+    "@trezoaplex-foundation/umi-bundle-tests": "^0.8.2",
+    "@trezoa/web3.js": "^1.73.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.46.1",
     "ava": "^5.1.0",

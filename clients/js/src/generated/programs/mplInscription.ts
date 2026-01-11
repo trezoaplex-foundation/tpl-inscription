@@ -11,19 +11,19 @@ import {
   Context,
   Program,
   PublicKey,
-} from '@metaplex-foundation/umi';
+} from '@trezoaplex-foundation/umi';
 import {
   getMplInscriptionErrorFromCode,
   getMplInscriptionErrorFromName,
 } from '../errors';
 
-export const MPL_INSCRIPTION_PROGRAM_ID =
+export const TPL_INSCRIPTION_PROGRAM_ID =
   '1NSCRfGeyo7wPUazGbaPBUsTM49e1k2aXewHGARfzSo' as PublicKey<'1NSCRfGeyo7wPUazGbaPBUsTM49e1k2aXewHGARfzSo'>;
 
 export function createMplInscriptionProgram(): Program {
   return {
-    name: 'mplInscription',
-    publicKey: MPL_INSCRIPTION_PROGRAM_ID,
+    name: 'tplInscription',
+    publicKey: TPL_INSCRIPTION_PROGRAM_ID,
     getErrorFromCode(code: number, cause?: Error) {
       return getMplInscriptionErrorFromCode(code, this, cause);
     },
@@ -40,7 +40,7 @@ export function getMplInscriptionProgram<T extends Program = Program>(
   context: Pick<Context, 'programs'>,
   clusterFilter?: ClusterFilter
 ): T {
-  return context.programs.get<T>('mplInscription', clusterFilter);
+  return context.programs.get<T>('tplInscription', clusterFilter);
 }
 
 export function getMplInscriptionProgramId(
@@ -48,8 +48,8 @@ export function getMplInscriptionProgramId(
   clusterFilter?: ClusterFilter
 ): PublicKey {
   return context.programs.getPublicKey(
-    'mplInscription',
-    MPL_INSCRIPTION_PROGRAM_ID,
+    'tplInscription',
+    TPL_INSCRIPTION_PROGRAM_ID,
     clusterFilter
   );
 }

@@ -1,5 +1,5 @@
 const path = require("path");
-const k = require("@metaplex-foundation/kinobi");
+const k = require("@trezoaplex-foundation/kinobi");
 
 // Paths.
 const clientDir = path.join(__dirname, "..", "clients");
@@ -196,7 +196,7 @@ const prettier = require(path.join(clientDir, "js", ".prettierrc.json"));
 kinobi.accept(new k.RenderJavaScriptVisitor(jsDir, {
   prettier,
   dependencyMap: {
-    mplTokenMetadata: "@metaplex-foundation/mpl-token-metadata",
+    mplTokenMetadata: "@trezoaplex-foundation/tpl-token-metadata",
   },
 }));
 

@@ -5,6 +5,6 @@
 //! [https://github.com/metaplex-foundation/kinobi]
 //!
 
-pub(crate) mod mpl_inscription;
+pub(crate) mod tpl_inscription;
 
-pub use self::mpl_inscription::MplInscriptionError;
+pub use self::tpl_inscription::MplInscriptionError;

@@ -1,10 +1,10 @@
 import test from 'ava';
-import { PublicKey, generateSigner } from '@metaplex-foundation/umi';
+import { PublicKey, generateSigner } from '@trezoaplex-foundation/umi';
 import {
   DataType,
   InscriptionMetadata,
   Key,
-  MPL_INSCRIPTION_PROGRAM_ID,
+  TPL_INSCRIPTION_PROGRAM_ID,
   addAuthority,
   fetchInscriptionMetadata,
   findInscriptionMetadataPda,
@@ -45,7 +45,7 @@ test('it can add an authority to an inscription', async (t) => {
   const jsonData = await umi.rpc.getAccount(inscriptionAccount.publicKey);
   if (jsonData.exists) {
     t.like(jsonData, {
-      owner: MPL_INSCRIPTION_PROGRAM_ID,
+      owner: TPL_INSCRIPTION_PROGRAM_ID,
       data: Uint8Array.from([]),
     });
   }
@@ -98,7 +98,7 @@ test('it can make an inscription immutable', async (t) => {
   const jsonData = await umi.rpc.getAccount(inscriptionAccount.publicKey);
   if (jsonData.exists) {
     t.like(jsonData, {
-      owner: MPL_INSCRIPTION_PROGRAM_ID,
+      owner: TPL_INSCRIPTION_PROGRAM_ID,
       data: Uint8Array.from([]),
     });
   }

@@ -1,20 +1,20 @@
-import { fetchDigitalAsset, mplTokenMetadata } from "@metaplex-foundation/mpl-token-metadata";
-import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
+import { fetchDigitalAsset, tplTokenMetadata } from "@trezoaplex-foundation/tpl-token-metadata";
+import { createUmi } from "@trezoaplex-foundation/umi-bundle-defaults";
 import { accountExists, accountValid, getInitCost, getInscribeJsonCost, getInscribeMediaCost, inscribe, loadWalletKey } from "../../utils.js";
-import { mplInscription, findAssociatedInscriptionPda, findInscriptionMetadataPda, findMintInscriptionPda, initializeAssociatedInscription, initializeFromMint } from "@metaplex-foundation/mpl-inscription";
-import { PublicKey } from "@metaplex-foundation/umi";
+import { tplInscription, findAssociatedInscriptionPda, findInscriptionMetadataPda, findMintInscriptionPda, initializeAssociatedInscription, initializeFromMint } from "@trezoaplex-foundation/tpl-inscription";
+import { PublicKey } from "@trezoaplex-foundation/umi";
 import pMap from "p-map";
 import { exists, existsSync, readFileSync } from "fs";
 import { globSync } from "glob";
 import yesno from "yesno";
 
-const INSCRIPTION_GATEWAY: string = 'https://igw.metaplex.com/';
+const INSCRIPTION_GATEWAY: string = 'https://igw.trezoaplex.com/';
 
 export async function inscribe_nfts(rpc: string, keypair: string, mints: PublicKey[], concurrency: number, skipJson: boolean, skipImages: boolean) {
     let umi = createUmi(rpc);
     umi = loadWalletKey(umi, keypair);
-    umi.use(mplInscription());
-    umi.use(mplTokenMetadata());
+    umi.use(tplInscription());
+    umi.use(tplTokenMetadata());
 
     const network = umi.rpc.getCluster().toString().replace('-beta', '');
 
@@ -87,7 +87,7 @@ export async function inscribe_nfts(rpc: string, keypair: string, mints: PublicK
     console.log(`${mediaBytes.length} Image files are a total of ${totalImageBytes} bytes.`);
 
     const ok = await yesno({
-        question: `Inscribing ${nfts.length} NFTs will cost ${totalCost} SOL. Do you want to continue (y/n)?`
+        question: `Inscribing ${nfts.length} NFTs will cost ${totalCost} TRZ. Do you want to continue (y/n)?`
     });
 
     if (!ok) {

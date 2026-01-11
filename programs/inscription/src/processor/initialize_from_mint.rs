@@ -1,10 +1,10 @@
 use borsh::{BorshDeserialize, BorshSerialize};
-use mpl_token_metadata::accounts::Metadata;
-use mpl_utils::{
+use tpl_token_metadata::accounts::Metadata;
+use tpl_utils::{
     assert_derivation, assert_owned_by, assert_owner_in, assert_signer,
     create_or_allocate_account_raw, token::SPL_TOKEN_PROGRAM_IDS,
 };
-use solana_program::{
+use trezoa_program::{
     account_info::AccountInfo, entrypoint::ProgramResult, program_memory::sol_memcpy,
     system_program,
 };
@@ -35,7 +35,7 @@ pub(crate) fn process_initialize_from_mint<'a>(accounts: &'a [AccountInfo<'a>]) 
     // Do the standard Token Metadata checks.
     assert_owned_by(
         ctx.accounts.token_metadata_account,
-        &mpl_token_metadata::ID,
+        &tpl_token_metadata::ID,
         MplInscriptionError::IncorrectOwner,
     )?;
 

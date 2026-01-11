@@ -20,7 +20,7 @@ import {
   deserializeAccount,
   gpaBuilder,
   publicKey as toPublicKey,
-} from '@metaplex-foundation/umi';
+} from '@trezoaplex-foundation/umi';
 import {
   Serializer,
   array,
@@ -30,7 +30,7 @@ import {
   struct,
   u64,
   u8,
-} from '@metaplex-foundation/umi/serializers';
+} from '@trezoaplex-foundation/umi/serializers';
 import {
   AssociatedInscription,
   AssociatedInscriptionArgs,
@@ -166,7 +166,7 @@ export function getInscriptionMetadataGpaBuilder(
   context: Pick<Context, 'rpc' | 'programs'>
 ) {
   const programId = context.programs.getPublicKey(
-    'mplInscription',
+    'tplInscription',
     '1NSCRfGeyo7wPUazGbaPBUsTM49e1k2aXewHGARfzSo'
   );
   return gpaBuilder(context, programId)
@@ -209,7 +209,7 @@ export function findInscriptionMetadataPda(
   }
 ): Pda {
   const programId = context.programs.getPublicKey(
-    'mplInscription',
+    'tplInscription',
     '1NSCRfGeyo7wPUazGbaPBUsTM49e1k2aXewHGARfzSo'
   );
   return context.eddsa.findPda(programId, [

@@ -18,14 +18,14 @@ import {
   deserializeAccount,
   gpaBuilder,
   publicKey as toPublicKey,
-} from '@metaplex-foundation/umi';
+} from '@trezoaplex-foundation/umi';
 import {
   Serializer,
   bytes,
   publicKey as publicKeySerializer,
   string,
   struct,
-} from '@metaplex-foundation/umi/serializers';
+} from '@trezoaplex-foundation/umi/serializers';
 
 export type AssociatedInscriptionAccount =
   Account<AssociatedInscriptionAccountAccountData>;
@@ -118,7 +118,7 @@ export function getAssociatedInscriptionAccountGpaBuilder(
   context: Pick<Context, 'rpc' | 'programs'>
 ) {
   const programId = context.programs.getPublicKey(
-    'mplInscription',
+    'tplInscription',
     '1NSCRfGeyo7wPUazGbaPBUsTM49e1k2aXewHGARfzSo'
   );
   return gpaBuilder(context, programId)
@@ -138,7 +138,7 @@ export function findAssociatedInscriptionAccountPda(
   }
 ): Pda {
   const programId = context.programs.getPublicKey(
-    'mplInscription',
+    'tplInscription',
     '1NSCRfGeyo7wPUazGbaPBUsTM49e1k2aXewHGARfzSo'
   );
   return context.eddsa.findPda(programId, [

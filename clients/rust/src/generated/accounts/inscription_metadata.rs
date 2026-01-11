@@ -10,7 +10,7 @@ use crate::generated::types::DataType;
 use crate::generated::types::Key;
 use borsh::BorshDeserialize;
 use borsh::BorshSerialize;
-use solana_program::pubkey::Pubkey;
+use trezoa_program::pubkey::Pubkey;
 
 #[derive(BorshSerialize, BorshDeserialize, Clone, Debug, Eq, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -31,30 +31,30 @@ pub struct InscriptionMetadata {
     pub padding: [u8; 7],
 }
 
-impl InscriptionMetadata {
+itpl InscriptionMetadata {
     pub fn create_pda(
         inscription_account: Pubkey,
         bump: u8,
-    ) -> Result<solana_program::pubkey::Pubkey, solana_program::pubkey::PubkeyError> {
-        solana_program::pubkey::Pubkey::create_program_address(
+    ) -> Result<trezoa_program::pubkey::Pubkey, trezoa_program::pubkey::PubkeyError> {
+        trezoa_program::pubkey::Pubkey::create_program_address(
             &[
                 "Inscription".as_bytes(),
-                crate::MPL_INSCRIPTION_ID.as_ref(),
+                crate::TPL_INSCRIPTION_ID.as_ref(),
                 inscription_account.as_ref(),
                 &[bump],
             ],
-            &crate::MPL_INSCRIPTION_ID,
+            &crate::TPL_INSCRIPTION_ID,
         )
     }
 
-    pub fn find_pda(inscription_account: &Pubkey) -> (solana_program::pubkey::Pubkey, u8) {
-        solana_program::pubkey::Pubkey::find_program_address(
+    pub fn find_pda(inscription_account: &Pubkey) -> (trezoa_program::pubkey::Pubkey, u8) {
+        trezoa_program::pubkey::Pubkey::find_program_address(
             &[
                 "Inscription".as_bytes(),
-                crate::MPL_INSCRIPTION_ID.as_ref(),
+                crate::TPL_INSCRIPTION_ID.as_ref(),
                 inscription_account.as_ref(),
             ],
-            &crate::MPL_INSCRIPTION_ID,
+            &crate::TPL_INSCRIPTION_ID,
         )
     }
 
@@ -65,11 +65,11 @@ impl InscriptionMetadata {
     }
 }
 
-impl<'a> TryFrom<&solana_program::account_info::AccountInfo<'a>> for InscriptionMetadata {
+itpl<'a> TryFrom<&trezoa_program::account_info::AccountInfo<'a>> for InscriptionMetadata {
     type Error = std::io::Error;
 
     fn try_from(
-        account_info: &solana_program::account_info::AccountInfo<'a>,
+        account_info: &trezoa_program::account_info::AccountInfo<'a>,
     ) -> Result<Self, Self::Error> {
         let mut data: &[u8] = &(*account_info.data).borrow();
         Self::deserialize(&mut data)

@@ -1,13 +1,13 @@
-import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
+import { createUmi } from "@trezoaplex-foundation/umi-bundle-defaults";
 import { loadWalletKey } from "../../utils.js";
-import { mplInscription, createShard, findInscriptionShardPda, safeFetchInscriptionShard } from "@metaplex-foundation/mpl-inscription";
+import { tplInscription, createShard, findInscriptionShardPda, safeFetchInscriptionShard } from "@trezoaplex-foundation/tpl-inscription";
 
 export async function create_shards(str: any, options: any) {
     const { rpc, keypair } = options.opts();
 
     let umi = createUmi(rpc);
     umi = loadWalletKey(umi, keypair);
-    umi.use(mplInscription());
+    umi.use(tplInscription());
 
     for (let shardNumber = 0; shardNumber < 32; shardNumber++) {
         const shardAccount = findInscriptionShardPda(umi, { shardNumber });

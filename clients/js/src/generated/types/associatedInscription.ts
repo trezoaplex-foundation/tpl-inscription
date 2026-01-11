@@ -11,7 +11,7 @@ import {
   string,
   struct,
   u8,
-} from '@metaplex-foundation/umi/serializers';
+} from '@trezoaplex-foundation/umi/serializers';
 import { DataType, DataTypeArgs, getDataTypeSerializer } from '.';
 
 export type AssociatedInscription = {

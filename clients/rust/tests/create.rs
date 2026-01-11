@@ -1,15 +1,15 @@
 #![cfg(feature = "test-sbf")]
 
 use borsh::BorshDeserialize;
-use solana_program_test::{tokio, ProgramTest};
-use solana_sdk::{
+use trezoa_program_test::{tokio, ProgramTest};
+use trezoa_sdk::{
     signature::{Keypair, Signer},
     transaction::Transaction,
 };
 
 #[tokio::test]
 async fn create() {
-    let mut context = ProgramTest::new("mpl_inscription", mpl_inscription::ID, None)
+    let mut context = ProgramTest::new("tpl_inscription", tpl_inscription::ID, None)
         .start_with_context()
         .await;
 

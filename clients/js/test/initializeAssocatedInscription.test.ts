@@ -1,16 +1,16 @@
-import { generateSigner, percentAmount } from '@metaplex-foundation/umi';
+import { generateSigner, percentAmount } from '@trezoaplex-foundation/umi';
 import test from 'ava';
 import {
   TokenStandard,
   createV1,
   mintV1,
-  mplTokenMetadata,
-} from '@metaplex-foundation/mpl-token-metadata';
+  tplTokenMetadata,
+} from '@trezoaplex-foundation/tpl-token-metadata';
 import {
   DataType,
   InscriptionMetadata,
   Key,
-  MPL_INSCRIPTION_PROGRAM_ID,
+  TPL_INSCRIPTION_PROGRAM_ID,
   fetchInscriptionMetadata,
   fetchInscriptionShard,
   findAssociatedInscriptionPda,
@@ -87,7 +87,7 @@ test('it can initialize an Associated Inscription account', async (t) => {
   const data = await umi.rpc.getAccount(associatedInscriptionAccount[0]);
   if (data.exists) {
     t.like(data, {
-      owner: MPL_INSCRIPTION_PROGRAM_ID,
+      owner: TPL_INSCRIPTION_PROGRAM_ID,
       data: Uint8Array.from([]),
     });
   }
@@ -102,7 +102,7 @@ test('it can initialize an Associated Inscription account', async (t) => {
 test('it can initialize an Associated Inscription account on a Mint', async (t) => {
   // Given a Umi instance and a new signer.
   const umi = await createUmi();
-  umi.use(mplTokenMetadata());
+  umi.use(tplTokenMetadata());
 
   const mint = generateSigner(umi);
   await createV1(umi, {
@@ -182,7 +182,7 @@ test('it can initialize an Associated Inscription account on a Mint', async (t) 
   const data = await umi.rpc.getAccount(associatedInscriptionAccount[0]);
   if (data.exists) {
     t.like(data, {
-      owner: MPL_INSCRIPTION_PROGRAM_ID,
+      owner: TPL_INSCRIPTION_PROGRAM_ID,
       data: Uint8Array.from([]),
     });
   }

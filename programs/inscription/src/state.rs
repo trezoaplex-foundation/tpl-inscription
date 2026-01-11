@@ -1,6 +1,6 @@
 use borsh::{BorshDeserialize, BorshSerialize};
 use shank::ShankAccount;
-use solana_program::pubkey::Pubkey;
+use trezoa_program::pubkey::Pubkey;
 
 pub const PREFIX: &str = "Inscription";
 pub const ASSOCIATION: &str = "Association";
@@ -47,7 +47,7 @@ pub struct InscriptionMetadata {
     pub _padding: [u8; 7],
 }
 
-impl Default for InscriptionMetadata {
+itpl Default for InscriptionMetadata {
     fn default() -> Self {
         Self {
             key: Key::InscriptionMetadataAccount,
@@ -73,7 +73,7 @@ pub struct InscriptionShard {
     pub count: u64,
 }
 
-impl Default for InscriptionShard {
+itpl Default for InscriptionShard {
     fn default() -> Self {
         Self {
             key: Key::InscriptionShardAccount,

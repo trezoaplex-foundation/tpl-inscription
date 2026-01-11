@@ -1,6 +1,6 @@
-import { fetchDigitalAsset, mplTokenMetadata } from "@metaplex-foundation/mpl-token-metadata";
-import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
-import { PublicKey } from "@metaplex-foundation/umi";
+import { fetchDigitalAsset, tplTokenMetadata } from "@trezoaplex-foundation/tpl-token-metadata";
+import { createUmi } from "@trezoaplex-foundation/umi-bundle-defaults";
+import { PublicKey } from "@trezoaplex-foundation/umi";
 import pMap from "p-map";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { SingleBar, Presets } from "cli-progress";
@@ -41,5 +41,5 @@ export async function cost_nfts(mints: PublicKey[]) {
 
     totalSize = mediaBytes.reduce((a, b) => a + b.length, totalSize);
     totalCost = mediaBytes.reduce((a, b) => a + getInscribeMediaCost(b.length), totalCost);
-    console.log(`Total Inscription cost for ${mints.length} NFTs and ${totalSize} bytes is ${totalCost} SOL.`);
+    console.log(`Total Inscription cost for ${mints.length} NFTs and ${totalSize} bytes is ${totalCost} TRZ.`);
 }

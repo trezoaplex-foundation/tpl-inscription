@@ -10,7 +10,7 @@ import {
   Signer,
   TransactionBuilder,
   publicKey,
-} from '@metaplex-foundation/umi';
+} from '@trezoaplex-foundation/umi';
 import { initializeFromMint as hiddenInitialize } from './generated/instructions/initializeFromMint';
 import {
   findInscriptionShardPda,

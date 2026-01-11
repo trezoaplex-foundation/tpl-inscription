@@ -1,12 +1,12 @@
 /* eslint-disable no-await-in-loop */
-import { generateSigner, none } from '@metaplex-foundation/umi';
+import { generateSigner, none } from '@trezoaplex-foundation/umi';
 import test from 'ava';
 import {
   AssociatedInscription,
   DataType,
   InscriptionMetadata,
   Key,
-  MPL_INSCRIPTION_PROGRAM_ID,
+  TPL_INSCRIPTION_PROGRAM_ID,
   fetchInscriptionMetadata,
   fetchInscriptionShard,
   findInscriptionMetadataPda,
@@ -65,7 +65,7 @@ test('it can initialize an Inscription account', async (t) => {
   const jsonData = await umi.rpc.getAccount(inscriptionAccount.publicKey);
   if (jsonData.exists) {
     t.like(jsonData, {
-      owner: MPL_INSCRIPTION_PROGRAM_ID,
+      owner: TPL_INSCRIPTION_PROGRAM_ID,
       data: Uint8Array.from([]),
     });
   }
@@ -127,7 +127,7 @@ test('it can initialize multiple Inscription accounts', async (t) => {
     const jsonData = await umi.rpc.getAccount(inscriptionAccount[i].publicKey);
     if (jsonData.exists) {
       t.like(jsonData, {
-        owner: MPL_INSCRIPTION_PROGRAM_ID,
+        owner: TPL_INSCRIPTION_PROGRAM_ID,
         data: Uint8Array.from([]),
       });
     }
@@ -186,7 +186,7 @@ test('it can initialize an Inscription account with separate authority', async (
   const jsonData = await umi.rpc.getAccount(inscriptionAccount.publicKey);
   if (jsonData.exists) {
     t.like(jsonData, {
-      owner: MPL_INSCRIPTION_PROGRAM_ID,
+      owner: TPL_INSCRIPTION_PROGRAM_ID,
       data: Uint8Array.from([]),
     });
   }

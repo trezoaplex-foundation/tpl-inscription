@@ -1,10 +1,10 @@
 use borsh::{BorshDeserialize, BorshSerialize};
 
-use mpl_utils::{
+use tpl_utils::{
     assert_derivation, assert_owner_in, assert_signer, resize_or_reallocate_account_raw,
     token::SPL_TOKEN_PROGRAM_IDS,
 };
-use solana_program::{
+use trezoa_program::{
     account_info::AccountInfo, entrypoint::ProgramResult, program_memory::sol_memcpy,
 };
 
@@ -18,7 +18,7 @@ pub(crate) fn process_set_mint<'a>(accounts: &'a [AccountInfo<'a>]) -> ProgramRe
     let ctx = &SetMintAccounts::context(accounts)?;
 
     // Check that the system program is correct.
-    if ctx.accounts.system_program.key != &solana_program::system_program::ID {
+    if ctx.accounts.system_program.key != &trezoa_program::system_program::ID {
         return Err(MplInscriptionError::InvalidSystemProgram.into());
     }
 

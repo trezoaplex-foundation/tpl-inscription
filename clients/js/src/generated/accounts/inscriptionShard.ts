@@ -18,7 +18,7 @@ import {
   deserializeAccount,
   gpaBuilder,
   publicKey as toPublicKey,
-} from '@metaplex-foundation/umi';
+} from '@trezoaplex-foundation/umi';
 import {
   Serializer,
   publicKey as publicKeySerializer,
@@ -26,7 +26,7 @@ import {
   struct,
   u64,
   u8,
-} from '@metaplex-foundation/umi/serializers';
+} from '@trezoaplex-foundation/umi/serializers';
 import { Key, KeyArgs, getKeySerializer } from '../types';
 
 export type InscriptionShard = Account<InscriptionShardAccountData>;
@@ -129,7 +129,7 @@ export function getInscriptionShardGpaBuilder(
   context: Pick<Context, 'rpc' | 'programs'>
 ) {
   const programId = context.programs.getPublicKey(
-    'mplInscription',
+    'tplInscription',
     '1NSCRfGeyo7wPUazGbaPBUsTM49e1k2aXewHGARfzSo'
   );
   return gpaBuilder(context, programId)
@@ -160,7 +160,7 @@ export function findInscriptionShardPda(
   }
 ): Pda {
   const programId = context.programs.getPublicKey(
-    'mplInscription',
+    'tplInscription',
     '1NSCRfGeyo7wPUazGbaPBUsTM49e1k2aXewHGARfzSo'
   );
   return context.eddsa.findPda(programId, [

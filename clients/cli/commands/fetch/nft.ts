@@ -1,12 +1,12 @@
-import { fetchInscriptionMetadataFromSeeds, findMintInscriptionPda, mplInscription } from "@metaplex-foundation/mpl-inscription";
-import { PublicKey } from "@metaplex-foundation/umi";
-import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
+import { fetchInscriptionMetadataFromSeeds, findMintInscriptionPda, tplInscription } from "@trezoaplex-foundation/tpl-inscription";
+import { PublicKey } from "@trezoaplex-foundation/umi";
+import { createUmi } from "@trezoaplex-foundation/umi-bundle-defaults";
 import { writeFileSync } from "fs";
 import pMap from "p-map";
 
 export async function fetchInscriptionsByMint(rpc: string, mints: PublicKey[], concurrency: number, output: string) {
     const umi = createUmi(rpc);
-    umi.use(mplInscription());
+    umi.use(tplInscription());
 
     const inscriptionMetadataAccounts = await pMap(mints, async (mint) => {
         const mintInscription = findMintInscriptionPda(umi, { mint });

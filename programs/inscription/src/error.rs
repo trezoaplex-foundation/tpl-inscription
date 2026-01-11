@@ -1,5 +1,5 @@
 use num_derive::FromPrimitive;
-use solana_program::{
+use trezoa_program::{
     decode_error::DecodeError,
     msg,
     program_error::{PrintProgramError, ProgramError},
@@ -85,19 +85,19 @@ pub enum MplInscriptionError {
     InvalidInscriptionMetadataAccount,
 }
 
-impl PrintProgramError for MplInscriptionError {
+itpl PrintProgramError for MplInscriptionError {
     fn print<E>(&self) {
         msg!(&self.to_string());
     }
 }
 
-impl From<MplInscriptionError> for ProgramError {
+itpl From<MplInscriptionError> for ProgramError {
     fn from(e: MplInscriptionError) -> Self {
         ProgramError::Custom(e as u32)
     }
 }
 
-impl<T> DecodeError<T> for MplInscriptionError {
+itpl<T> DecodeError<T> for MplInscriptionError {
     fn type_of() -> &'static str {
         "Mpl Json Error"
     }

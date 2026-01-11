@@ -1,6 +1,6 @@
 import { inscribe_nfts } from './commands/inscribe/nft.js';
 import { create_shards } from './commands/create/shards.js';
-import { PublicKey, publicKey } from '@metaplex-foundation/umi';
+import { PublicKey, publicKey } from '@trezoaplex-foundation/umi';
 import { readFileSync } from 'fs';
 import { download_nfts } from './commands/download/nft.js';
 
@@ -16,7 +16,7 @@ import { fetchShard } from './commands/fetch/shard.js';
 const program = new Command();
 
 program
-    .name('Metaplex Inscription CLI')
+    .name('Trezoaplex Inscription CLI')
     .description('CLI to manage Inscriptions')
     .version('0.1.0');
 
@@ -25,7 +25,7 @@ const inscribeCmd = program.command('inscribe');
 inscribeCmd.command('nft')
     .description('Inscribe an existing NFT')
     .option('-r --rpc <string>', 'The endpoint to connect to.')
-    .option('-k --keypair <string>', 'Solana wallet location')
+    .option('-k --keypair <string>', 'Trezoa wallet location')
     .option('-m --mint <string>', 'Mint address of the NFT')
     .option('-c --concurrency <number>', 'Number of concurrent writes to perform', '10')
     .option('-sj --skip-json', 'Skip the JSON file creation', false)
@@ -38,7 +38,7 @@ inscribeCmd.command('nft')
 inscribeCmd.command('hashlist')
     .description('Inscribe an existing NFT')
     .option('-r --rpc <string>', 'The endpoint to connect to.')
-    .option('-k --keypair <string>', 'Solana wallet location')
+    .option('-k --keypair <string>', 'Trezoa wallet location')
     .option('-h --hashlist <string>', 'The file containing the hashlist')
     .option('-c --concurrency <number>', 'Number of concurrent writes to perform', '10')
     .option('-sj --skip-json', 'Skip the JSON file creation', false)
@@ -57,7 +57,7 @@ const downloadCmd = program.command('download');
 downloadCmd.command('nft')
     .description('Download an existing NFT\'s data')
     .option('-r --rpc <string>', 'The endpoint to connect to.')
-    .option('-k --keypair <string>', 'Solana wallet location')
+    .option('-k --keypair <string>', 'Trezoa wallet location')
     .option('-m --mint <string>', 'Mint address of the NFT')
     .option('-c --concurrency <number>', 'Number of concurrent writes to perform', '10')
     .action(async (str, options) => {
@@ -69,7 +69,7 @@ downloadCmd.command('nft')
 downloadCmd.command('hashlist')
     .description('Download an existing NFT\'s data')
     .option('-r --rpc <string>', 'The endpoint to connect to.')
-    .option('-k --keypair <string>', 'Solana wallet location')
+    .option('-k --keypair <string>', 'Trezoa wallet location')
     .option('-h --hashlist <string>', 'The file containing the hashlist')
     .option('-c --concurrency <number>', 'Number of concurrent writes to perform', '10')
     .action(async (str, options) => {
@@ -190,7 +190,7 @@ const createCmd = program.command('create');
 createCmd.command('shards')
     .description('Inscribe an existing NFT')
     .option('-r --rpc <string>', 'The endpoint to connect to.')
-    .option('-k --keypair <string>', 'Solana wallet location')
+    .option('-k --keypair <string>', 'Trezoa wallet location')
     .action(create_shards);
 
 
@@ -199,7 +199,7 @@ const testCmd = program.command('test');
 testCmd.command('create_collection')
     .description('Create a test collection')
     .option('-r --rpc <string>', 'The endpoint to connect to.')
-    .option('-k --keypair <string>', 'Solana wallet location')
+    .option('-k --keypair <string>', 'Trezoa wallet location')
     .option('-c --concurrency <number>', 'Number of concurrent writes to perform', '10')
     .action(async (str, options) => {
         const { rpc, keypair, concurrency } = options.opts();

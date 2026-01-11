@@ -4,4 +4,4 @@ pub(crate) mod instruction;
 pub(crate) mod processor;
 pub(crate) mod state;
 
-solana_program::declare_id!("1NSCRfGeyo7wPUazGbaPBUsTM49e1k2aXewHGARfzSo");
+trezoa_program::declare_id!("1NSCRfGeyo7wPUazGbaPBUsTM49e1k2aXewHGARfzSo");

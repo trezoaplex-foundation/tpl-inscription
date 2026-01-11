@@ -1,6 +1,6 @@
 use borsh::BorshSerialize;
-use mpl_utils::{assert_derivation, create_or_allocate_account_raw};
-use solana_program::{
+use tpl_utils::{assert_derivation, create_or_allocate_account_raw};
+use trezoa_program::{
     account_info::AccountInfo, entrypoint::ProgramResult, program_memory::sol_memcpy,
     system_program,
 };

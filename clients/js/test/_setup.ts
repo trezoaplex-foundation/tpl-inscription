@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { createUmi as basecreateUmi } from '@metaplex-foundation/umi-bundle-tests';
-import { PublicKey, Umi, publicKey } from '@metaplex-foundation/umi';
+import { createUmi as basecreateUmi } from '@trezoaplex-foundation/umi-bundle-tests';
+import { PublicKey, Umi, publicKey } from '@trezoaplex-foundation/umi';
 import pMap from 'p-map';
 import {
-  mplInscription,
+  tplInscription,
   createShard,
   findInscriptionShardPda,
   safeFetchInscriptionShard,
@@ -14,7 +14,7 @@ export const SPL_TOKEN_2022_PROGRAM_ID: PublicKey = publicKey(
 );
 
 export const createUmi = async () => {
-  const umi = (await basecreateUmi()).use(mplInscription());
+  const umi = (await basecreateUmi()).use(tplInscription());
 
   // Use pMap to parallelize the creation of all 32 shards.
   await pMap(

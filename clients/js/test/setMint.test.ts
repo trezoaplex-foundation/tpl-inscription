@@ -3,16 +3,16 @@ import {
   generateSigner,
   percentAmount,
   some,
-} from '@metaplex-foundation/umi';
+} from '@trezoaplex-foundation/umi';
 import test from 'ava';
 import {
   TokenStandard,
   createV1,
   mintV1,
-  mplTokenMetadata,
-} from '@metaplex-foundation/mpl-token-metadata';
-import { SPL_ASSOCIATED_TOKEN_PROGRAM_ID } from '@metaplex-foundation/mpl-toolbox';
-import { publicKey as publicKeySerializer } from '@metaplex-foundation/umi/serializers';
+  tplTokenMetadata,
+} from '@trezoaplex-foundation/tpl-token-metadata';
+import { SPL_ASSOCIATED_TOKEN_PROGRAM_ID } from '@trezoaplex-foundation/tpl-toolbox';
+import { publicKey as publicKeySerializer } from '@trezoaplex-foundation/umi/serializers';
 import {
   AssociatedInscription,
   DataType,
@@ -30,7 +30,7 @@ import { createUmi, SPL_TOKEN_2022_PROGRAM_ID } from './_setup';
 test('it can set the mint on a Mint Inscription account', async (t) => {
   // Given a Umi instance and a new signer.
   const umi = await createUmi();
-  umi.use(mplTokenMetadata());
+  umi.use(tplTokenMetadata());
 
   const mint = generateSigner(umi);
   await createV1(umi, {
@@ -93,7 +93,7 @@ test('it can set the mint on a Mint Inscription account', async (t) => {
 test('it cannot set the mint on an Inscription account that is not derived from a mint', async (t) => {
   // Given a Umi instance and a new signer.
   const umi = await createUmi();
-  umi.use(mplTokenMetadata());
+  umi.use(tplTokenMetadata());
 
   const mint = generateSigner(umi);
   await createV1(umi, {
@@ -142,7 +142,7 @@ test('it cannot set the mint on an Inscription account that is not derived from 
 test('it cannot set the wrong mint on a Mint Inscription account', async (t) => {
   // Given a Umi instance and a new signer.
   const umi = await createUmi();
-  umi.use(mplTokenMetadata());
+  umi.use(tplTokenMetadata());
 
   const mint = generateSigner(umi);
   await createV1(umi, {
@@ -204,10 +204,10 @@ test('it cannot set the wrong mint on a Mint Inscription account', async (t) => 
   await t.throwsAsync(promise, { name: 'DerivedKeyInvalid' });
 });
 
-test('it can mint from SPL Token 2022', async (t) => {
+test('it can mint from TPL Token 2022', async (t) => {
   // Given a created NonFungible.
   const umi = await createUmi();
-  umi.use(mplTokenMetadata());
+  umi.use(tplTokenMetadata());
   const mint = generateSigner(umi);
 
   await createV1(umi, {
@@ -219,7 +219,7 @@ test('it can mint from SPL Token 2022', async (t) => {
     tokenStandard: TokenStandard.NonFungible,
   }).sendAndConfirm(umi);
 
-  // And we derive the associated token account from SPL Token 2022.
+  // And we derive the associated token account from TPL Token 2022.
   const [token] = umi.eddsa.findPda(SPL_ASSOCIATED_TOKEN_PROGRAM_ID, [
     publicKeySerializer().serialize(umi.identity.publicKey),
     publicKeySerializer().serialize(SPL_TOKEN_2022_PROGRAM_ID),

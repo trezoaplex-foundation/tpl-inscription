@@ -1,6 +1,6 @@
-import { fetchDigitalAsset, mplTokenMetadata } from "@metaplex-foundation/mpl-token-metadata";
-import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
-import { PublicKey } from "@metaplex-foundation/umi";
+import { fetchDigitalAsset, tplTokenMetadata } from "@trezoaplex-foundation/tpl-token-metadata";
+import { createUmi } from "@trezoaplex-foundation/umi-bundle-defaults";
+import { PublicKey } from "@trezoaplex-foundation/umi";
 import pMap from "p-map";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { SingleBar, Presets } from "cli-progress";
@@ -8,7 +8,7 @@ import { fileTypeFromBuffer } from "file-type";
 
 export async function download_nfts(rpc: string, keypair: string, mints: PublicKey[], concurrency: number) {
     let umi = createUmi(rpc);
-    umi.use(mplTokenMetadata());
+    umi.use(tplTokenMetadata());
 
     // Create the cache folder if it doesn't already exist.
     if (!existsSync('./cache')) {

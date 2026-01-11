@@ -1,6 +1,6 @@
 # Mpl Json
 
-A simple program for writing JSON bytes on chain.
+A sitple program for writing JSON bytes on chain.
 
 ## Building
 

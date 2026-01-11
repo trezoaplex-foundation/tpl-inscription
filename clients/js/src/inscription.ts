@@ -5,7 +5,7 @@ import {
   publicKey as toPublicKey,
   RpcGetAccountOptions,
   assertAccountExists,
-} from '@metaplex-foundation/umi';
+} from '@trezoaplex-foundation/umi';
 
 export async function fetchInscription(
   context: Pick<Context, 'rpc'>,

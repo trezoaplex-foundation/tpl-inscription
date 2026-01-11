@@ -1,5 +1,5 @@
-import { allocate, createShard, findInscriptionShardPda, safeFetchInscriptionShard, writeData } from "@metaplex-foundation/mpl-inscription";
-import { Pda, PublicKey, Umi, keypairIdentity } from "@metaplex-foundation/umi";
+import { allocate, createShard, findInscriptionShardPda, safeFetchInscriptionShard, writeData } from "@trezoaplex-foundation/tpl-inscription";
+import { Pda, PublicKey, Umi, keypairIdentity } from "@trezoaplex-foundation/umi";
 import { readFileSync, write } from "fs";
 import { SingleBar, Presets } from "cli-progress";
 import pMap from "p-map";

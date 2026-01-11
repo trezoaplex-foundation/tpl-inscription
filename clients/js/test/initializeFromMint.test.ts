@@ -1,19 +1,19 @@
-import { generateSigner, percentAmount, some } from '@metaplex-foundation/umi';
+import { generateSigner, percentAmount, some } from '@trezoaplex-foundation/umi';
 import test from 'ava';
 import {
   TokenStandard,
   createV1,
   mintV1,
-  mplTokenMetadata,
-} from '@metaplex-foundation/mpl-token-metadata';
-import { publicKey as publicKeySerializer } from '@metaplex-foundation/umi/serializers';
-import { SPL_ASSOCIATED_TOKEN_PROGRAM_ID } from '@metaplex-foundation/mpl-toolbox';
+  tplTokenMetadata,
+} from '@trezoaplex-foundation/tpl-token-metadata';
+import { publicKey as publicKeySerializer } from '@trezoaplex-foundation/umi/serializers';
+import { SPL_ASSOCIATED_TOKEN_PROGRAM_ID } from '@trezoaplex-foundation/tpl-toolbox';
 import {
   AssociatedInscription,
   DataType,
   InscriptionMetadata,
   Key,
-  MPL_INSCRIPTION_PROGRAM_ID,
+  TPL_INSCRIPTION_PROGRAM_ID,
   fetchInscriptionMetadata,
   fetchInscriptionShard,
   findInscriptionMetadataPda,
@@ -26,7 +26,7 @@ import { SPL_TOKEN_2022_PROGRAM_ID, createUmi } from './_setup';
 test('it can initialize a Mint Inscription account', async (t) => {
   // Given a Umi instance and a new signer.
   const umi = await createUmi();
-  umi.use(mplTokenMetadata());
+  umi.use(tplTokenMetadata());
 
   const mint = generateSigner(umi);
   await createV1(umi, {
@@ -92,16 +92,16 @@ test('it can initialize a Mint Inscription account', async (t) => {
   const jsonData = await umi.rpc.getAccount(inscriptionAccount[0]);
   if (jsonData.exists) {
     t.like(jsonData, {
-      owner: MPL_INSCRIPTION_PROGRAM_ID,
+      owner: TPL_INSCRIPTION_PROGRAM_ID,
       data: Uint8Array.from([]),
     });
   }
 });
 
-test('it can initialize a Mint Inscription account from SPL Token 2022', async (t) => {
+test('it can initialize a Mint Inscription account from TPL Token 2022', async (t) => {
   // Given a Umi instance and a new signer.
   const umi = await createUmi();
-  umi.use(mplTokenMetadata());
+  umi.use(tplTokenMetadata());
 
   const mint = generateSigner(umi);
   await createV1(umi, {
@@ -113,7 +113,7 @@ test('it can initialize a Mint Inscription account from SPL Token 2022', async (
     tokenStandard: TokenStandard.NonFungible,
   }).sendAndConfirm(umi);
 
-  // And we derive the associated token account from SPL Token 2022.
+  // And we derive the associated token account from TPL Token 2022.
   const [token] = umi.eddsa.findPda(SPL_ASSOCIATED_TOKEN_PROGRAM_ID, [
     publicKeySerializer().serialize(umi.identity.publicKey),
     publicKeySerializer().serialize(SPL_TOKEN_2022_PROGRAM_ID),
@@ -179,7 +179,7 @@ test('it can initialize a Mint Inscription account from SPL Token 2022', async (
   const jsonData = await umi.rpc.getAccount(inscriptionAccount[0]);
   if (jsonData.exists) {
     t.like(jsonData, {
-      owner: MPL_INSCRIPTION_PROGRAM_ID,
+      owner: TPL_INSCRIPTION_PROGRAM_ID,
       data: Uint8Array.from([]),
     });
   }
@@ -188,7 +188,7 @@ test('it can initialize a Mint Inscription account from SPL Token 2022', async (
 test('it cannot initialize a Mint Inscription account if it is not the update authority of the NFT', async (t) => {
   // Given a Umi instance and a new signer.
   const umi = await createUmi();
-  umi.use(mplTokenMetadata());
+  umi.use(tplTokenMetadata());
   const authority = generateSigner(umi);
 
   const mint = generateSigner(umi);
@@ -234,7 +234,7 @@ test('it cannot initialize a Mint Inscription account if it is not the update au
 test('it can initialize a Mint Inscription account with separate authority', async (t) => {
   // Given a Umi instance and a new signer.
   const umi = await createUmi();
-  umi.use(mplTokenMetadata());
+  umi.use(tplTokenMetadata());
 
   const authority = generateSigner(umi);
 
@@ -304,7 +304,7 @@ test('it can initialize a Mint Inscription account with separate authority', asy
   const jsonData = await umi.rpc.getAccount(inscriptionAccount[0]);
   if (jsonData.exists) {
     t.like(jsonData, {
-      owner: MPL_INSCRIPTION_PROGRAM_ID,
+      owner: TPL_INSCRIPTION_PROGRAM_ID,
       data: Uint8Array.from([]),
     });
   }

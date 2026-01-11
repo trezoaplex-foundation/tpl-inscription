@@ -1,12 +1,12 @@
 [package]
-name = "mpl-inscription"
+name = "tpl-inscription"
 version = "0.8.1"
 edition = "2021"
 readme = "README.md"
 license-file = "../../LICENSE"
 homepage = "https://www.metaplex.com"
-description = "Program to inscribe binary data to a Solana account."
-repository = "https://github.com/metaplex-foundation/mpl-engraver"
+description = "Program to inscribe binary data to a Trezoa account."
+repository = "https://github.com/metaplex-foundation/tpl-engraver"
 
 [lib]
 crate-type = ["cdylib", "lib"]
@@ -21,11 +21,11 @@ num-derive = "^0.3"
 num-traits = "^0.2"
 serde = { version = "^1.0", features = ["derive"], optional = true }
 serde_with = { version = "^3.0", optional = true }
-solana-program = "~1.16"
+trezoa-program = "~1.16"
 thiserror = "^1.0"
 kaigan = "^0.2"
 
 [dev-dependencies]
 assert_matches = "1.5.0"
-solana-program-test = "~1.16"
-solana-sdk = "~1.16"
+trezoa-program-test = "~1.16"
+trezoa-sdk = "~1.16"

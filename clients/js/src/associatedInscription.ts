@@ -1,8 +1,8 @@
-import { Context, Pda, PublicKey } from '@metaplex-foundation/umi';
+import { Context, Pda, PublicKey } from '@trezoaplex-foundation/umi';
 import {
   string,
   publicKey as publicKeySerializer,
-} from '@metaplex-foundation/umi/serializers';
+} from '@trezoaplex-foundation/umi/serializers';
 
 export function findAssociatedInscriptionPda(
   context: Pick<Context, 'eddsa' | 'programs'>,
@@ -12,7 +12,7 @@ export function findAssociatedInscriptionPda(
   }
 ): Pda {
   const programId = context.programs.getPublicKey(
-    'mplInscription',
+    'tplInscription',
     '1NSCRfGeyo7wPUazGbaPBUsTM49e1k2aXewHGARfzSo'
   );
   return context.eddsa.findPda(programId, [

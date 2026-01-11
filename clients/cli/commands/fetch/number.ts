@@ -1,11 +1,11 @@
-import { Key, getInscriptionMetadataGpaBuilder, mplInscription } from "@metaplex-foundation/mpl-inscription";
-import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
+import { Key, getInscriptionMetadataGpaBuilder, tplInscription } from "@trezoaplex-foundation/tpl-inscription";
+import { createUmi } from "@trezoaplex-foundation/umi-bundle-defaults";
 import { writeFileSync } from "fs";
 import pMap from "p-map";
 
 export async function fetchInscriptionsByRank(rpc: string, ranks: number[], concurrency: number, output: string) {
     const umi = createUmi(rpc);
-    umi.use(mplInscription());
+    umi.use(tplInscription());
 
     const inscriptionMetadataAccounts = await pMap(ranks, async (rank) => {
         const inscriptionMetadatas = [

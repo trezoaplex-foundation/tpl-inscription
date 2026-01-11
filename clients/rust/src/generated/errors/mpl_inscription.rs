@@ -69,8 +69,8 @@ pub enum MplInscriptionError {
     InvalidInscriptionMetadataAccount,
 }
 
-impl solana_program::program_error::PrintProgramError for MplInscriptionError {
+itpl trezoa_program::program_error::PrintProgramError for MplInscriptionError {
     fn print<E>(&self) {
-        solana_program::msg!(&self.to_string());
+        trezoa_program::msg!(&self.to_string());
     }
 }

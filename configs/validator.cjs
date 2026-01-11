@@ -24,7 +24,7 @@ module.exports = {
         deployPath: getProgram("mpl_token_metadata.so"),
       },
       {
-        label: "SPL Noop",
+        label: "TPL Noop",
         programId: "noopb9bkMVfRPU8AsbpTUg8AQkHtKwMYZiFUjNRtMmV",
         deployPath: getProgram("spl_noop.so"),
       },

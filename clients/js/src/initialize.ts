@@ -9,7 +9,7 @@ import {
   PublicKey,
   Signer,
   TransactionBuilder,
-} from '@metaplex-foundation/umi';
+} from '@trezoaplex-foundation/umi';
 import { initialize as hiddenInitialize } from './generated/instructions/initialize';
 import { findInscriptionShardPda } from './generated';
 

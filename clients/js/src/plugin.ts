@@ -1,7 +1,7 @@
-import { UmiPlugin } from '@metaplex-foundation/umi';
+import { UmiPlugin } from '@trezoaplex-foundation/umi';
 import { createMplInscriptionProgram } from './generated';
 
-export const mplInscription = (): UmiPlugin => ({
+export const tplInscription = (): UmiPlugin => ({
   install(umi) {
     umi.programs.add(createMplInscriptionProgram(), false);
   },

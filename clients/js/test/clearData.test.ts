@@ -2,16 +2,16 @@ import {
   TransactionBuilder,
   generateSigner,
   percentAmount,
-} from '@metaplex-foundation/umi';
+} from '@trezoaplex-foundation/umi';
 import {
   TokenStandard,
   createV1,
   mintV1,
-  mplTokenMetadata,
-} from '@metaplex-foundation/mpl-token-metadata';
+  tplTokenMetadata,
+} from '@trezoaplex-foundation/tpl-token-metadata';
 import test from 'ava';
 import {
-  MPL_INSCRIPTION_PROGRAM_ID,
+  TPL_INSCRIPTION_PROGRAM_ID,
   clearData,
   findAssociatedInscriptionPda,
   findInscriptionMetadataPda,
@@ -76,7 +76,7 @@ test('it can clear JSON data from an inscription account', async (t) => {
 test('it can write JSON data to a mint inscription account', async (t) => {
   // Given a Umi instance and a new signer.
   const umi = await createUmi();
-  umi.use(mplTokenMetadata());
+  umi.use(tplTokenMetadata());
 
   const mint = generateSigner(umi);
   await createV1(umi, {
@@ -139,7 +139,7 @@ test('it can write JSON data to a mint inscription account', async (t) => {
   }
 
   t.like(jsonData, {
-    owner: MPL_INSCRIPTION_PROGRAM_ID,
+    owner: TPL_INSCRIPTION_PROGRAM_ID,
   });
 });
 
@@ -195,7 +195,7 @@ test('it can write JSON data to an inscription account with a separate authority
   }
 
   t.like(jsonData, {
-    owner: MPL_INSCRIPTION_PROGRAM_ID,
+    owner: TPL_INSCRIPTION_PROGRAM_ID,
   });
 });
 
@@ -267,14 +267,14 @@ test('it can write Image data to an associated inscription account', async (t) =
   }
 
   t.like(jsonData, {
-    owner: MPL_INSCRIPTION_PROGRAM_ID,
+    owner: TPL_INSCRIPTION_PROGRAM_ID,
   });
 });
 
 test('it can write Image data to an associated mint inscription account', async (t) => {
   // Given a Umi instance and a new signer.
   const umi = await createUmi();
-  umi.use(mplTokenMetadata());
+  umi.use(tplTokenMetadata());
 
   const mint = generateSigner(umi);
   await createV1(umi, {
@@ -350,7 +350,7 @@ test('it can write Image data to an associated mint inscription account', async 
     t.deepEqual(Buffer.from(imageData.data), imageBytes);
 
     t.like(imageData, {
-      owner: MPL_INSCRIPTION_PROGRAM_ID,
+      owner: TPL_INSCRIPTION_PROGRAM_ID,
     });
   }
 });

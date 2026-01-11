@@ -7,12 +7,12 @@ A Umi-compatible JavaScript library for the project.
 1. First, if you're not already using Umi, [follow these instructions to install the Umi framework](https://github.com/metaplex-foundation/umi/blob/main/docs/installation.md).
 2. Next, install this library using the package manager of your choice.
    ```sh
-   npm install @metaplex-foundation/mpl-inscription
+   npm install @trezoaplex-foundation/tpl-inscription
    ```
 2. Finally, register the library with your Umi instance like so.
    ```ts
-   import { mplInscription } from '@metaplex-foundation/mpl-inscription';
-   umi.use(mplInscription());
+   import { tplInscription } from '@trezoaplex-foundation/tpl-inscription';
+   umi.use(tplInscription());
    ```
 
 3. Inscribe any binary data on chain
@@ -40,11 +40,11 @@ A Umi-compatible JavaScript library for the project.
    console.log("Inscription number: ", inscriptionMetadata.inscriptionRank.toString())
    ```
 
-4. Example on how to mint a simple inscription with small metadata
+4. Exatple on how to mint a sitple inscription with small metadata
    ```ts
 
    // Step 1: Mint an NFT or pNFT
-   // See https://developers.metaplex.com/token-metadata/mint
+   // See https://developers.trezoaplex.com/token-metadata/mint
 
    // Step 2: Inscribe metadata
 
@@ -73,7 +73,7 @@ A Umi-compatible JavaScript library for the project.
    ```
 
 
-You can learn more about this library's API by reading its generated [TypeDoc documentation](https://mpl-inscription-js-docs.vercel.app).
+You can learn more about this library's API by reading its generated [TypeDoc documentation](https://tpl-inscription-js-docs.vercel.app).
 
 ## Contributing
 

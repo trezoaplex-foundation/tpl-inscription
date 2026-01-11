@@ -7,52 +7,52 @@
 
 use borsh::BorshDeserialize;
 use borsh::BorshSerialize;
-use solana_program::pubkey::Pubkey;
+use trezoa_program::pubkey::Pubkey;
 
 /// Accounts.
 pub struct AddAuthority {
     /// The account to store the metadata's metadata in.
-    pub inscription_metadata_account: solana_program::pubkey::Pubkey,
+    pub inscription_metadata_account: trezoa_program::pubkey::Pubkey,
     /// The account that will pay for the rent.
-    pub payer: solana_program::pubkey::Pubkey,
+    pub payer: trezoa_program::pubkey::Pubkey,
     /// The authority of the inscription account.
-    pub authority: Option<solana_program::pubkey::Pubkey>,
+    pub authority: Option<trezoa_program::pubkey::Pubkey>,
     /// System program
-    pub system_program: solana_program::pubkey::Pubkey,
+    pub system_program: trezoa_program::pubkey::Pubkey,
 }
 
-impl AddAuthority {
+itpl AddAuthority {
     pub fn instruction(
         &self,
         args: AddAuthorityInstructionArgs,
-    ) -> solana_program::instruction::Instruction {
+    ) -> trezoa_program::instruction::Instruction {
         self.instruction_with_remaining_accounts(args, &[])
     }
     #[allow(clippy::vec_init_then_push)]
     pub fn instruction_with_remaining_accounts(
         &self,
         args: AddAuthorityInstructionArgs,
-        remaining_accounts: &[solana_program::instruction::AccountMeta],
-    ) -> solana_program::instruction::Instruction {
+        remaining_accounts: &[trezoa_program::instruction::AccountMeta],
+    ) -> trezoa_program::instruction::Instruction {
         let mut accounts = Vec::with_capacity(4 + remaining_accounts.len());
-        accounts.push(solana_program::instruction::AccountMeta::new(
+        accounts.push(trezoa_program::instruction::AccountMeta::new(
             self.inscription_metadata_account,
             false,
         ));
-        accounts.push(solana_program::instruction::AccountMeta::new(
+        accounts.push(trezoa_program::instruction::AccountMeta::new(
             self.payer, true,
         ));
         if let Some(authority) = self.authority {
-            accounts.push(solana_program::instruction::AccountMeta::new_readonly(
+            accounts.push(trezoa_program::instruction::AccountMeta::new_readonly(
                 authority, true,
             ));
         } else {
-            accounts.push(solana_program::instruction::AccountMeta::new_readonly(
-                crate::MPL_INSCRIPTION_ID,
+            accounts.push(trezoa_program::instruction::AccountMeta::new_readonly(
+                crate::TPL_INSCRIPTION_ID,
                 false,
             ));
         }
-        accounts.push(solana_program::instruction::AccountMeta::new_readonly(
+        accounts.push(trezoa_program::instruction::AccountMeta::new_readonly(
             self.system_program,
             false,
         ));
@@ -61,8 +61,8 @@ impl AddAuthority {
         let mut args = args.try_to_vec().unwrap();
         data.append(&mut args);
 
-        solana_program::instruction::Instruction {
-            program_id: crate::MPL_INSCRIPTION_ID,
+        trezoa_program::instruction::Instruction {
+            program_id: crate::TPL_INSCRIPTION_ID,
             accounts,
             data,
         }
@@ -74,7 +74,7 @@ struct AddAuthorityInstructionData {
     discriminator: u8,
 }
 
-impl AddAuthorityInstructionData {
+itpl AddAuthorityInstructionData {
     fn new() -> Self {
         Self { discriminator: 5 }
     }
@@ -89,15 +89,15 @@ pub struct AddAuthorityInstructionArgs {
 /// Instruction builder.
 #[derive(Default)]
 pub struct AddAuthorityBuilder {
-    inscription_metadata_account: Option<solana_program::pubkey::Pubkey>,
-    payer: Option<solana_program::pubkey::Pubkey>,
-    authority: Option<solana_program::pubkey::Pubkey>,
-    system_program: Option<solana_program::pubkey::Pubkey>,
+    inscription_metadata_account: Option<trezoa_program::pubkey::Pubkey>,
+    payer: Option<trezoa_program::pubkey::Pubkey>,
+    authority: Option<trezoa_program::pubkey::Pubkey>,
+    system_program: Option<trezoa_program::pubkey::Pubkey>,
     new_authority: Option<Pubkey>,
-    __remaining_accounts: Vec<solana_program::instruction::AccountMeta>,
+    __remaining_accounts: Vec<trezoa_program::instruction::AccountMeta>,
 }
 
-impl AddAuthorityBuilder {
+itpl AddAuthorityBuilder {
     pub fn new() -> Self {
         Self::default()
     }
@@ -105,28 +105,28 @@ impl AddAuthorityBuilder {
     #[inline(always)]
     pub fn inscription_metadata_account(
         &mut self,
-        inscription_metadata_account: solana_program::pubkey::Pubkey,
+        inscription_metadata_account: trezoa_program::pubkey::Pubkey,
     ) -> &mut Self {
         self.inscription_metadata_account = Some(inscription_metadata_account);
         self
     }
     /// The account that will pay for the rent.
     #[inline(always)]
-    pub fn payer(&mut self, payer: solana_program::pubkey::Pubkey) -> &mut Self {
+    pub fn payer(&mut self, payer: trezoa_program::pubkey::Pubkey) -> &mut Self {
         self.payer = Some(payer);
         self
     }
     /// `[optional account]`
     /// The authority of the inscription account.
     #[inline(always)]
-    pub fn authority(&mut self, authority: Option<solana_program::pubkey::Pubkey>) -> &mut Self {
+    pub fn authority(&mut self, authority: Option<trezoa_program::pubkey::Pubkey>) -> &mut Self {
         self.authority = authority;
         self
     }
     /// `[optional account, default to '11111111111111111111111111111111']`
     /// System program
     #[inline(always)]
-    pub fn system_program(&mut self, system_program: solana_program::pubkey::Pubkey) -> &mut Self {
+    pub fn system_program(&mut self, system_program: trezoa_program::pubkey::Pubkey) -> &mut Self {
         self.system_program = Some(system_program);
         self
     }
@@ -139,7 +139,7 @@ impl AddAuthorityBuilder {
     #[inline(always)]
     pub fn add_remaining_account(
         &mut self,
-        account: solana_program::instruction::AccountMeta,
+        account: trezoa_program::instruction::AccountMeta,
     ) -> &mut Self {
         self.__remaining_accounts.push(account);
         self
@@ -148,13 +148,13 @@ impl AddAuthorityBuilder {
     #[inline(always)]
     pub fn add_remaining_accounts(
         &mut self,
-        accounts: &[solana_program::instruction::AccountMeta],
+        accounts: &[trezoa_program::instruction::AccountMeta],
     ) -> &mut Self {
         self.__remaining_accounts.extend_from_slice(accounts);
         self
     }
     #[allow(clippy::clone_on_copy)]
-    pub fn instruction(&self) -> solana_program::instruction::Instruction {
+    pub fn instruction(&self) -> trezoa_program::instruction::Instruction {
         let accounts = AddAuthority {
             inscription_metadata_account: self
                 .inscription_metadata_account
@@ -163,7 +163,7 @@ impl AddAuthorityBuilder {
             authority: self.authority,
             system_program: self
                 .system_program
-                .unwrap_or(solana_program::pubkey!("11111111111111111111111111111111")),
+                .unwrap_or(trezoa_program::pubkey!("11111111111111111111111111111111")),
         };
         let args = AddAuthorityInstructionArgs {
             new_authority: self
@@ -179,34 +179,34 @@ impl AddAuthorityBuilder {
 /// `add_authority` CPI accounts.
 pub struct AddAuthorityCpiAccounts<'a, 'b> {
     /// The account to store the metadata's metadata in.
-    pub inscription_metadata_account: &'b solana_program::account_info::AccountInfo<'a>,
+    pub inscription_metadata_account: &'b trezoa_program::account_info::AccountInfo<'a>,
     /// The account that will pay for the rent.
-    pub payer: &'b solana_program::account_info::AccountInfo<'a>,
+    pub payer: &'b trezoa_program::account_info::AccountInfo<'a>,
     /// The authority of the inscription account.
-    pub authority: Option<&'b solana_program::account_info::AccountInfo<'a>>,
+    pub authority: Option<&'b trezoa_program::account_info::AccountInfo<'a>>,
     /// System program
-    pub system_program: &'b solana_program::account_info::AccountInfo<'a>,
+    pub system_program: &'b trezoa_program::account_info::AccountInfo<'a>,
 }
 
 /// `add_authority` CPI instruction.
 pub struct AddAuthorityCpi<'a, 'b> {
     /// The program to invoke.
-    pub __program: &'b solana_program::account_info::AccountInfo<'a>,
+    pub __program: &'b trezoa_program::account_info::AccountInfo<'a>,
     /// The account to store the metadata's metadata in.
-    pub inscription_metadata_account: &'b solana_program::account_info::AccountInfo<'a>,
+    pub inscription_metadata_account: &'b trezoa_program::account_info::AccountInfo<'a>,
     /// The account that will pay for the rent.
-    pub payer: &'b solana_program::account_info::AccountInfo<'a>,
+    pub payer: &'b trezoa_program::account_info::AccountInfo<'a>,
     /// The authority of the inscription account.
-    pub authority: Option<&'b solana_program::account_info::AccountInfo<'a>>,
+    pub authority: Option<&'b trezoa_program::account_info::AccountInfo<'a>>,
     /// System program
-    pub system_program: &'b solana_program::account_info::AccountInfo<'a>,
+    pub system_program: &'b trezoa_program::account_info::AccountInfo<'a>,
     /// The arguments for the instruction.
     pub __args: AddAuthorityInstructionArgs,
 }
 
-impl<'a, 'b> AddAuthorityCpi<'a, 'b> {
+itpl<'a, 'b> AddAuthorityCpi<'a, 'b> {
     pub fn new(
-        program: &'b solana_program::account_info::AccountInfo<'a>,
+        program: &'b trezoa_program::account_info::AccountInfo<'a>,
         accounts: AddAuthorityCpiAccounts<'a, 'b>,
         args: AddAuthorityInstructionArgs,
     ) -> Self {
@@ -220,25 +220,25 @@ impl<'a, 'b> AddAuthorityCpi<'a, 'b> {
         }
     }
     #[inline(always)]
-    pub fn invoke(&self) -> solana_program::entrypoint::ProgramResult {
+    pub fn invoke(&self) -> trezoa_program::entrypoint::ProgramResult {
         self.invoke_signed_with_remaining_accounts(&[], &[])
     }
     #[inline(always)]
     pub fn invoke_with_remaining_accounts(
         &self,
         remaining_accounts: &[(
-            &'b solana_program::account_info::AccountInfo<'a>,
+            &'b trezoa_program::account_info::AccountInfo<'a>,
             bool,
             bool,
         )],
-    ) -> solana_program::entrypoint::ProgramResult {
+    ) -> trezoa_program::entrypoint::ProgramResult {
         self.invoke_signed_with_remaining_accounts(&[], remaining_accounts)
     }
     #[inline(always)]
     pub fn invoke_signed(
         &self,
         signers_seeds: &[&[&[u8]]],
-    ) -> solana_program::entrypoint::ProgramResult {
+    ) -> trezoa_program::entrypoint::ProgramResult {
         self.invoke_signed_with_remaining_accounts(signers_seeds, &[])
     }
     #[allow(clippy::clone_on_copy)]
@@ -247,37 +247,37 @@ impl<'a, 'b> AddAuthorityCpi<'a, 'b> {
         &self,
         signers_seeds: &[&[&[u8]]],
         remaining_accounts: &[(
-            &'b solana_program::account_info::AccountInfo<'a>,
+            &'b trezoa_program::account_info::AccountInfo<'a>,
             bool,
             bool,
         )],
-    ) -> solana_program::entrypoint::ProgramResult {
+    ) -> trezoa_program::entrypoint::ProgramResult {
         let mut accounts = Vec::with_capacity(4 + remaining_accounts.len());
-        accounts.push(solana_program::instruction::AccountMeta::new(
+        accounts.push(trezoa_program::instruction::AccountMeta::new(
             *self.inscription_metadata_account.key,
             false,
         ));
-        accounts.push(solana_program::instruction::AccountMeta::new(
+        accounts.push(trezoa_program::instruction::AccountMeta::new(
             *self.payer.key,
             true,
         ));
         if let Some(authority) = self.authority {
-            accounts.push(solana_program::instruction::AccountMeta::new_readonly(
+            accounts.push(trezoa_program::instruction::AccountMeta::new_readonly(
                 *authority.key,
                 true,
             ));
         } else {
-            accounts.push(solana_program::instruction::AccountMeta::new_readonly(
-                crate::MPL_INSCRIPTION_ID,
+            accounts.push(trezoa_program::instruction::AccountMeta::new_readonly(
+                crate::TPL_INSCRIPTION_ID,
                 false,
             ));
         }
-        accounts.push(solana_program::instruction::AccountMeta::new_readonly(
+        accounts.push(trezoa_program::instruction::AccountMeta::new_readonly(
             *self.system_program.key,
             false,
         ));
         remaining_accounts.iter().for_each(|remaining_account| {
-            accounts.push(solana_program::instruction::AccountMeta {
+            accounts.push(trezoa_program::instruction::AccountMeta {
                 pubkey: *remaining_account.0.key,
                 is_signer: remaining_account.1,
                 is_writable: remaining_account.2,
@@ -287,8 +287,8 @@ impl<'a, 'b> AddAuthorityCpi<'a, 'b> {
         let mut args = self.__args.try_to_vec().unwrap();
         data.append(&mut args);
 
-        let instruction = solana_program::instruction::Instruction {
-            program_id: crate::MPL_INSCRIPTION_ID,
+        let instruction = trezoa_program::instruction::Instruction {
+            program_id: crate::TPL_INSCRIPTION_ID,
             accounts,
             data,
         };
@@ -305,9 +305,9 @@ impl<'a, 'b> AddAuthorityCpi<'a, 'b> {
             .for_each(|remaining_account| account_infos.push(remaining_account.0.clone()));
 
         if signers_seeds.is_empty() {
-            solana_program::program::invoke(&instruction, &account_infos)
+            trezoa_program::program::invoke(&instruction, &account_infos)
         } else {
-            solana_program::program::invoke_signed(&instruction, &account_infos, signers_seeds)
+            trezoa_program::program::invoke_signed(&instruction, &account_infos, signers_seeds)
         }
     }
 }
@@ -317,8 +317,8 @@ pub struct AddAuthorityCpiBuilder<'a, 'b> {
     instruction: Box<AddAuthorityCpiBuilderInstruction<'a, 'b>>,
 }
 
-impl<'a, 'b> AddAuthorityCpiBuilder<'a, 'b> {
-    pub fn new(program: &'b solana_program::account_info::AccountInfo<'a>) -> Self {
+itpl<'a, 'b> AddAuthorityCpiBuilder<'a, 'b> {
+    pub fn new(program: &'b trezoa_program::account_info::AccountInfo<'a>) -> Self {
         let instruction = Box::new(AddAuthorityCpiBuilderInstruction {
             __program: program,
             inscription_metadata_account: None,
@@ -334,14 +334,14 @@ impl<'a, 'b> AddAuthorityCpiBuilder<'a, 'b> {
     #[inline(always)]
     pub fn inscription_metadata_account(
         &mut self,
-        inscription_metadata_account: &'b solana_program::account_info::AccountInfo<'a>,
+        inscription_metadata_account: &'b trezoa_program::account_info::AccountInfo<'a>,
     ) -> &mut Self {
         self.instruction.inscription_metadata_account = Some(inscription_metadata_account);
         self
     }
     /// The account that will pay for the rent.
     #[inline(always)]
-    pub fn payer(&mut self, payer: &'b solana_program::account_info::AccountInfo<'a>) -> &mut Self {
+    pub fn payer(&mut self, payer: &'b trezoa_program::account_info::AccountInfo<'a>) -> &mut Self {
         self.instruction.payer = Some(payer);
         self
     }
@@ -350,7 +350,7 @@ impl<'a, 'b> AddAuthorityCpiBuilder<'a, 'b> {
     #[inline(always)]
     pub fn authority(
         &mut self,
-        authority: Option<&'b solana_program::account_info::AccountInfo<'a>>,
+        authority: Option<&'b trezoa_program::account_info::AccountInfo<'a>>,
     ) -> &mut Self {
         self.instruction.authority = authority;
         self
@@ -359,7 +359,7 @@ impl<'a, 'b> AddAuthorityCpiBuilder<'a, 'b> {
     #[inline(always)]
     pub fn system_program(
         &mut self,
-        system_program: &'b solana_program::account_info::AccountInfo<'a>,
+        system_program: &'b trezoa_program::account_info::AccountInfo<'a>,
     ) -> &mut Self {
         self.instruction.system_program = Some(system_program);
         self
@@ -373,7 +373,7 @@ impl<'a, 'b> AddAuthorityCpiBuilder<'a, 'b> {
     #[inline(always)]
     pub fn add_remaining_account(
         &mut self,
-        account: &'b solana_program::account_info::AccountInfo<'a>,
+        account: &'b trezoa_program::account_info::AccountInfo<'a>,
         is_writable: bool,
         is_signer: bool,
     ) -> &mut Self {
@@ -390,7 +390,7 @@ impl<'a, 'b> AddAuthorityCpiBuilder<'a, 'b> {
     pub fn add_remaining_accounts(
         &mut self,
         accounts: &[(
-            &'b solana_program::account_info::AccountInfo<'a>,
+            &'b trezoa_program::account_info::AccountInfo<'a>,
             bool,
             bool,
         )],
@@ -401,7 +401,7 @@ impl<'a, 'b> AddAuthorityCpiBuilder<'a, 'b> {
         self
     }
     #[inline(always)]
-    pub fn invoke(&self) -> solana_program::entrypoint::ProgramResult {
+    pub fn invoke(&self) -> trezoa_program::entrypoint::ProgramResult {
         self.invoke_signed(&[])
     }
     #[allow(clippy::clone_on_copy)]
@@ -409,7 +409,7 @@ impl<'a, 'b> AddAuthorityCpiBuilder<'a, 'b> {
     pub fn invoke_signed(
         &self,
         signers_seeds: &[&[&[u8]]],
-    ) -> solana_program::entrypoint::ProgramResult {
+    ) -> trezoa_program::entrypoint::ProgramResult {
         let args = AddAuthorityInstructionArgs {
             new_authority: self
                 .instruction
@@ -443,15 +443,15 @@ impl<'a, 'b> AddAuthorityCpiBuilder<'a, 'b> {
 }
 
 struct AddAuthorityCpiBuilderInstruction<'a, 'b> {
-    __program: &'b solana_program::account_info::AccountInfo<'a>,
-    inscription_metadata_account: Option<&'b solana_program::account_info::AccountInfo<'a>>,
-    payer: Option<&'b solana_program::account_info::AccountInfo<'a>>,
-    authority: Option<&'b solana_program::account_info::AccountInfo<'a>>,
-    system_program: Option<&'b solana_program::account_info::AccountInfo<'a>>,
+    __program: &'b trezoa_program::account_info::AccountInfo<'a>,
+    inscription_metadata_account: Option<&'b trezoa_program::account_info::AccountInfo<'a>>,
+    payer: Option<&'b trezoa_program::account_info::AccountInfo<'a>>,
+    authority: Option<&'b trezoa_program::account_info::AccountInfo<'a>>,
+    system_program: Option<&'b trezoa_program::account_info::AccountInfo<'a>>,
     new_authority: Option<Pubkey>,
     /// Additional instruction accounts `(AccountInfo, is_writable, is_signer)`.
     __remaining_accounts: Vec<(
-        &'b solana_program::account_info::AccountInfo<'a>,
+        &'b trezoa_program::account_info::AccountInfo<'a>,
         bool,
         bool,
     )>,
