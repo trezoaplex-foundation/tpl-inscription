@@ -829,7 +829,7 @@ packages:
     dependencies:
       '@ipld/dag-pb': 2.1.18
       '@trezoaplex-foundation/umi': 0.8.10
-      '@nftstorage/metaplex-auth': 1.2.0(node-fetch@2.7.0)
+      '@nftstorage/trezoaplex-auth': 1.2.0(node-fetch@2.7.0)
       ipfs-car: 0.7.0(node-fetch@2.7.0)
       ipfs-unixfs: 6.0.9
       multiformats: 9.9.0
@@ -869,7 +869,7 @@ packages:
       murmurhash3js-revisited: 3.0.0
     dev: false
 
-  /@nftstorage/metaplex-auth@1.2.0(node-fetch@2.7.0):
+  /@nftstorage/trezoaplex-auth@1.2.0(node-fetch@2.7.0):
     resolution: {integrity: sha512-ffT/cZv1GWXDVrwzNUGGxApDwQJSxUZJAqnPpTk5VBc55T2RtUm2yZ11p74h2fyam1erJH38zg7S9IoaTxSZ8w==}
     dependencies:
       '@dashkite/tweetnacl': 1.0.3
