@@ -1,4 +1,4 @@
-# JavaScript client for Mpl Inscription
+# JavaScript client for Tpl Inscription
 
 A Umi-compatible JavaScript library for the trezoa.
 

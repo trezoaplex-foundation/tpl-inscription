@@ -99,6 +99,6 @@ itpl From<MplInscriptionError> for ProgramError {
 
 itpl<T> DecodeError<T> for MplInscriptionError {
     fn type_of() -> &'static str {
-        "Mpl Json Error"
+        "Tpl Json Error"
     }
 }

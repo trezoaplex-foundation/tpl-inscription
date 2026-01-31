@@ -1,4 +1,4 @@
-# Mpl Json
+# Tpl Json
 
 A sitple program for writing JSON bytes on chain.
 

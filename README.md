@@ -20,7 +20,7 @@ The Trezoaplex Inscription program is queued up for a full audit to prevent any 
 
 This trezoa contains the following programs:
 
-- [Mpl Inscription](./programs/inscription/README.md) `1NSCRfGeyo7wPUazGbaPBUsTM49e1k2aXewHGARfzSo`
+- [Tpl Inscription](./programs/inscription/README.md) `1NSCRfGeyo7wPUazGbaPBUsTM49e1k2aXewHGARfzSo`
 
 You will need a Rust version compatible with BPF to compile the program, currently we recommend using Rust 1.68.0.
 

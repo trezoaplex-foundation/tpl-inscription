@@ -1,6 +1,6 @@
-# Contributing to Mpl Inscription
+# Contributing to Tpl Inscription
 
-This is a quick guide to help you contribute to Mpl Inscription.
+This is a quick guide to help you contribute to Tpl Inscription.
 
 ## Getting started
 
